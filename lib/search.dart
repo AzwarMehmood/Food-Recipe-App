@@ -73,7 +73,17 @@ class _SearchState extends State<Search> {
                     children: [
                       Expanded(
                         child: TextField(
-                          textInputAction: TextInputAction.go,
+                          textInputAction: TextInputAction.search,
+                          onSubmitted: (value){
+                            if (((value).replaceAll(" ", ""))
+                                .isNotEmpty) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Search(value)));
+                            }
+                          },
                           controller: searchController,
                           decoration: InputDecoration(
                             hintText: "Let's Cook Something",

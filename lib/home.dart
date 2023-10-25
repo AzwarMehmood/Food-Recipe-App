@@ -347,7 +347,17 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                   child: TextField(
-                    textInputAction: TextInputAction.go,
+                    textInputAction: TextInputAction.search,
+                    onSubmitted: (value){
+                      if (((value).replaceAll(" ", ""))
+                          .isNotEmpty) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Search(value)));
+                      }
+                    },
                     controller: searchController,
                     decoration: InputDecoration(
                       hintText: "Let's Cook Something",
